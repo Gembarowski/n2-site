@@ -575,7 +575,7 @@ section{padding:88px 0;}
   text-transform:uppercase;
   color:var(--steel);
   margin-bottom:8px;
-}
+}  
 .field input, .field select, .field textarea{
   width:100%;
   padding:13px 14px;
