@@ -297,9 +297,11 @@ h1,h2,h3,h4{
   padding-top:10px;
 }
 .tag-media svg{width:88px;height:88px;opacity:0.92;}
+.tag-media img{width:100%;height:100%;object-fit:cover;}
 .tag-grade{
   position:absolute;
   top:14px;right:14px;
+  z-index:2;
   font-family:var(--font-mono);
   font-size:11px;
   letter-spacing:0.06em;
