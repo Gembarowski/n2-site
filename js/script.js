@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '5541999999999';
+const WHATSAPP_NUMBER = '5541996794080';
 const ESTOQUE_API = 'https://n2autosys-backend.onrender.com/api/publico/estoque?empresa=n2autosys_nickel';
 
 function buildWhatsAppLink(message) {
