@@ -129,6 +129,7 @@ function renderVehicleCard(veiculo) {
           <div>Km <b>${escapeHtml(veiculo.km || '—')}</b></div>
           <div>Local <b>${escapeHtml(veiculo.local_patio || 'Curitiba/PR')}</b></div>
           <div>Tipo <b>${escapeHtml(veiculo.tipo || '—')}</b></div>
+          <div>Dano <b>${escapeHtml(veiculo.nivel_dano || '—')}</b></div>
           <div>Cód. <b>${codigo}</b></div>
         </div>
         <div class="tag-price-row">
