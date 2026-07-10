@@ -85,10 +85,11 @@ function escapeHtml(value) {
 
 function mapGrade(nivelDano) {
   const v = (nivelDano || '').toLowerCase();
-  if (v.includes('grande')) return { key: 'sucata', className: 'grade-sucata', label: 'Sucata / peças' };
-  if (v.includes('média') || v.includes('media')) return { key: 'grande', className: 'grade-grande', label: 'Sinistro grande' };
-  if (v.includes('pequena')) return { key: 'medio', className: 'grade-medio', label: 'Sinistro médio' };
-  return { key: 'pequeno', className: 'grade-pequeno', label: 'Sinistro pequeno' };
+  if (v.includes('sucata')) return { key: 'sucata', className: 'grade-sucata', label: 'Sucata / peças' };
+  if (v.includes('grande')) return { key: 'grande', className: 'grade-grande', label: 'Grande Monta' };
+  if (v.includes('média') || v.includes('media')) return { key: 'medio', className: 'grade-medio', label: 'Média Monta' };
+  if (v.includes('pequena')) return { key: 'pequeno', className: 'grade-pequeno', label: 'Pequena Monta' };
+  return { key: 'pequeno', className: 'grade-pequeno', label: 'Sem Monta' };
 }
 
 function formatPrice(valor) {
