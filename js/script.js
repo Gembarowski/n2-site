@@ -83,8 +83,12 @@ function escapeHtml(value) {
   }[c]));
 }
 
-function mapGrade(nivelDano) {
-  const v = (nivelDano || '').toLowerCase();
+function mapGrade(veiculo) {
+  const tipo = (veiculo.tipo || '').toLowerCase();
+  if (tipo.includes('implemento') || tipo.includes('carroceria') || tipo.includes('baú') || tipo.includes('bau')) {
+    return { key: 'implemento', className: 'grade-implemento', label: veiculo.tipo || 'Implemento' };
+  }
+  const v = (veiculo.nivel_dano || '').toLowerCase();
   if (v.includes('sucata')) return { key: 'sucata', className: 'grade-sucata', label: 'Sucata / peças' };
   if (v.includes('grande')) return { key: 'grande', className: 'grade-grande', label: 'Grande Monta' };
   if (v.includes('média') || v.includes('media')) return { key: 'medio', className: 'grade-medio', label: 'Média Monta' };
@@ -108,7 +112,7 @@ const PLACEHOLDER_CAR_SVG = `
 `;
 
 function renderVehicleCard(veiculo) {
-  const grade = mapGrade(veiculo.nivel_dano);
+  const grade = mapGrade(veiculo);
   const foto = Array.isArray(veiculo.fotos) ? veiculo.fotos[0] : null;
   const codigo = String(veiculo.id || '').slice(0, 8).toUpperCase();
   const nomeVeiculo = `${veiculo.marca || ''} ${veiculo.modelo || ''}`.trim();
@@ -118,10 +122,12 @@ function renderVehicleCard(veiculo) {
     ? `<img src="${escapeHtml(foto)}" alt="${escapeHtml(nomeVeiculo)}" loading="lazy">`
     : PLACEHOLDER_CAR_SVG;
 
+  const badgeText = grade.key === 'implemento' ? grade.label : (veiculo.nivel_dano || grade.label);
+
   return `
     <div class="tag-card" data-grade="${grade.key}">
       <div class="tag-punch"></div>
-      <div class="tag-grade ${grade.className}">${escapeHtml(veiculo.nivel_dano || grade.label)}</div>
+      <div class="tag-grade ${grade.className}">${escapeHtml(badgeText)}</div>
       <div class="tag-media">${media}</div>
       <div class="tag-body">
         <div class="tag-model">${escapeHtml(nomeVeiculo)}</div>

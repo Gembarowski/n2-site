@@ -308,6 +308,7 @@ h1,h2,h3,h4{
 .grade-medio{background:#e0923a;color:#2a1a05;}
 .grade-grande{background:var(--danger);color:#fff;}
 .grade-sucata{background:var(--steel);color:#fff;}
+.grade-implemento{background:var(--green-700);color:#fff;}
 .tag-body{padding:20px 20px 22px;border-top:1px dashed rgba(0,0,0,0.14);}
 .tag-model{
   font-family:var(--font-display);
