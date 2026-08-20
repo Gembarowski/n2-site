@@ -33,6 +33,52 @@ function initNavToggle() {
   });
 }
 
+function initAboutCarousel() {
+  const carousel = document.getElementById('about-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.carousel-track');
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const dotsContainer = carousel.querySelector('.carousel-dots');
+  const prevBtn = carousel.querySelector('.carousel-btn.prev');
+  const nextBtn = carousel.querySelector('.carousel-btn.next');
+  if (!track || !slides.length) return;
+
+  let current = 0;
+  let timer = null;
+
+  const dots = Array.from(slides).map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Ir para foto ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+    return dot;
+  });
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function resetTimer() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  prevBtn.addEventListener('click', () => { prev(); resetTimer(); });
+  nextBtn.addEventListener('click', () => { next(); resetTimer(); });
+  carousel.addEventListener('mouseenter', () => timer && clearInterval(timer));
+  carousel.addEventListener('mouseleave', resetTimer);
+
+  goTo(0);
+  resetTimer();
+}
+
 function initStockFilters() {
   const buttons = document.querySelectorAll('.filter-btn[data-filter]');
   const cards = document.querySelectorAll('.tag-card[data-grade]');
@@ -186,4 +232,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavToggle();
   initContactForm();
   initEstoqueDinamico();
+  initAboutCarousel();
 });
